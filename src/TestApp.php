@@ -17,7 +17,7 @@ class TestApp
     protected MiddleNameGenerator $middleNameGenerator;
 
     /**
-     * inputSanitizer
+     * InputSanitizer
      */
     protected InputSanitizer $inputSanitizer;
 
@@ -42,7 +42,7 @@ class TestApp
      */
     public function routing(): void
     {
-        $q = $this->inputSanitizer->getInputString('q', 'GET');
+        $q = $this->inputSanitizer->getInputString('q', InputSanitizer::METHOD_GET);
         switch ($q) {
 
             case '':
@@ -75,13 +75,24 @@ class TestApp
      */
     protected function showResult(): void
     {
-        $firstName = $this->inputSanitizer->getInputString('first_name', 'POST');
-        $lastName = $this->inputSanitizer->getInputString('last_name', 'POST');
-        $middleName = $this->middleNameGenerator->generateMiddleName($firstName, $lastName);
-
-        echo (new Template('result-page.html.php'))
-            ->add('firstName', $firstName)
-            ->add('middleName', $middleName)
-            ->add('lastName', $lastName);
+        $errors = [];
+        $firstName = $this->inputSanitizer->getInputString('first_name', InputSanitizer::METHOD_POST);
+        $lastName = $this->inputSanitizer->getInputString('last_name', InputSanitizer::METHOD_POST);
+        if (!$firstName) {
+            $errors[] = 'First name is required';
+        }
+        if (!$lastName) {
+            $errors[] = 'Last name is required';
+        }
+        if (!$errors) {
+            $tpl = (new Template('result-page.html.php'))
+                ->addString('middleName', $this->middleNameGenerator->generateMiddleName($firstName, $lastName));
+        } else {
+            $tpl = (new Template('name-form.html.php'))
+                ->addArray('errors', $errors);
+        }
+        echo $tpl
+            ->addString('firstName', $firstName)
+            ->addString('lastName', $lastName);
     }
 }

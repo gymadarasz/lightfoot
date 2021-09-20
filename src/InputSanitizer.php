@@ -11,6 +11,8 @@ use Exception;
  */
 class InputSanitizer
 {
+    public const METHOD_POST = 'POST';
+    public const METHOD_GET = 'GET';
     /**
      * getInputString
      *
@@ -20,13 +22,19 @@ class InputSanitizer
      */
     public function getInputString(string $key, string $from): string
     {
+        if (!$key) {
+            throw new Exception('Missing input parameter');
+        }
         switch ($from) {
-            case 'GET':
+
+            case self::METHOD_GET:
                 $value = $_GET[$key] ?? '';
                 break;
-            case 'POST':
+
+            case self::METHOD_POST:
                 $value = $_POST[$key] ?? '';
                 break;
+
             default:
                 throw new Exception('Invalid input method' . ($from ? ": $from" : ''));
         }

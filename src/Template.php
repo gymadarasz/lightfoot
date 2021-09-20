@@ -34,13 +34,26 @@ class Template
     }
 
     /**
-     * add
+     * addString
      *
      * @param string $key
      * @param string $value
      * @return self
      */
-    public function add(string $key, string $value): self
+    public function addString(string $key, string $value): self
+    {
+        $this->data[$key] = $value;
+        return $this;
+    }
+
+    /**
+     * addArray
+     *
+     * @param string $key
+     * @param array $value
+     * @return self
+     */
+    public function addArray(string $key, array $value): self
     {
         $this->data[$key] = $value;
         return $this;
