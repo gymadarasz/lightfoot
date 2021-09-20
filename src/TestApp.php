@@ -6,11 +6,27 @@ namespace Lightfoot;
 
 use Exception;
 
+/**
+ * TestApp
+ */
 class TestApp
 {
+    /**
+     * middleNameGenerator
+     */
     protected MiddleNameGenerator $middleNameGenerator;
+
+    /**
+     * inputSanitizer
+     */
     protected InputSanitizer $inputSanitizer;
 
+    /**
+     * construct
+     *
+     * @param MiddleNameGenerator $middleNameGenerator
+     * @param InputSanitizer $inputSanitizer
+     */
     public function __construct(
         MiddleNameGenerator $middleNameGenerator,
         InputSanitizer $inputSanitizer
@@ -19,6 +35,11 @@ class TestApp
         $this->inputSanitizer = $inputSanitizer;
     }
 
+    /**
+     * routing
+     *
+     * @return void
+     */
     public function routing(): void
     {
         $q = $this->inputSanitizer->getInputString('q', 'GET');
@@ -37,11 +58,21 @@ class TestApp
         }
     }
 
+    /**
+     * showForm
+     *
+     * @return void
+     */
     protected function showForm(): void
     {
         echo new Template('name-form.html.php');
     }
 
+    /**
+     * showResult
+     *
+     * @return void
+     */
     protected function showResult(): void
     {
         $firstName = $this->inputSanitizer->getInputString('first_name', 'POST');

@@ -6,8 +6,18 @@ namespace Lightfoot;
 
 use Exception;
 
+/**
+ * InputSanitizer
+ */
 class InputSanitizer
 {
+    /**
+     * getInputString
+     *
+     * @param string $key
+     * @param string $from
+     * @return string
+     */
     public function getInputString(string $key, string $from): string
     {
         switch ($from) {
