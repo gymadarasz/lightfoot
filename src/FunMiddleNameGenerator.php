@@ -18,6 +18,7 @@ class FunMiddleNameGenerator implements MiddleNameGenerator
      */
     public function generateMiddleName(string $firstName, string $lastName): string
     {
-        return 'Blah..'; // TODO: do some fun
+        $names = preg_split("/\s+/", \file_get_contents(__DIR__ . '/funny-names.txt'));
+        return $names[rand(0, count($names)-1)];
     }
 }
