@@ -7,15 +7,30 @@ namespace Lightfoot;
 use ReflectionClass;
 use Exception;
 
+/**
+ * Factory
+ */
 class Factory
 {
+    /**
+     * instances
+     */
     protected static array $instances = [];
 
+    /**
+     * construct
+     */
     public function __construct()
     {
         self::$instances[self::class] = $this;
     }
 
+    /**
+     * getInstance
+     *
+     * @param string $class
+     * @return object
+     */
     public function getInstance(string $class): object
     {
         if (!isset(self::$instances[$class])) {
