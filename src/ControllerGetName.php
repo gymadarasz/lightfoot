@@ -49,13 +49,13 @@ class ControllerGetName implements Controller
         if (!$lastName) {
             $errors[] = 'Last name is required';
         }
-        if (!$errors) {
-            $tpl = (new Template('result-page.html.php'))
+
+        $tpl = $errors ?
+            (new Template('name-form.html.php'))
+                ->addArray('errors', $errors) :
+            (new Template('result-page.html.php'))
                 ->addString('middleName', $this->middleNameGenerator->generateMiddleName($firstName, $lastName));
-        } else {
-            $tpl = (new Template('name-form.html.php'))
-                ->addArray('errors', $errors);
-        }
+
         echo $tpl
             ->addString('firstName', $firstName)
             ->addString('lastName', $lastName);
