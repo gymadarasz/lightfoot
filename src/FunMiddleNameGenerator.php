@@ -74,7 +74,7 @@ class FunMiddleNameGenerator implements MiddleNameGeneratorInterface
             $name = $this->getRandomName($names);
             $i--;
         }
-        
+
         return $name;
     }
 }
