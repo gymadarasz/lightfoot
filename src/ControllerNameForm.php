@@ -7,7 +7,7 @@ namespace Lightfoot;
 /**
  * ControllerNameForm
  */
-class ControllerNameForm implements Controller
+class ControllerNameForm implements ControllerInterface
 {
     /**
      * process

@@ -9,7 +9,7 @@ namespace Lightfoot;
  */
 class Template
 {
-    public const DIR = __DIR__ . '/tpls';
+    public const DIR = __DIR__ . '/templates';
 
     /**
      * filename

@@ -7,7 +7,7 @@ namespace Lightfoot;
 /**
  * FunMiddleNameGenerator
  */
-class FunMiddleNameGenerator implements MiddleNameGenerator
+class FunMiddleNameGenerator implements MiddleNameGeneratorInterface
 {
     /**
      * generateMiddleName

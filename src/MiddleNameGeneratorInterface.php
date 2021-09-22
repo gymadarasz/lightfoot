@@ -7,7 +7,7 @@ namespace Lightfoot;
 /**
  * MiddleNameGenerator
  */
-interface MiddleNameGenerator
+interface MiddleNameGeneratorInterface
 {
     /**
      * generateMiddleName

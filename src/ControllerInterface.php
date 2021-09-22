@@ -7,7 +7,7 @@ namespace Lightfoot;
 /**
  * Controller
  */
-interface Controller
+interface ControllerInterface
 {
     /**
      * process

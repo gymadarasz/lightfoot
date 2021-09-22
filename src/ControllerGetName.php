@@ -7,7 +7,7 @@ namespace Lightfoot;
 /**
  * ControllerGetName
  */
-class ControllerGetName implements Controller
+class ControllerGetName implements ControllerInterface
 {
     /**
      * InputSanitizer
@@ -15,15 +15,15 @@ class ControllerGetName implements Controller
     protected InputSanitizer $inputSanitizer;
 
     /**
-     * middleNameGenerator
+     * middleNameGeneratorInterface
      */
-    protected MiddleNameGenerator $middleNameGenerator;
+    protected MiddleNameGeneratorInterface $middleNameGenerator;
 
     /**
      * construct
      *
      * @param InputSanitizer $inputSanitizer
-     * @param MiddleNameGenerator $middleNameGenerator
+     * @param MiddleNameGeneratorInterface $middleNameGenerator
      */
     public function __construct(
         InputSanitizer $inputSanitizer,
@@ -41,8 +41,8 @@ class ControllerGetName implements Controller
     public function process(): void
     {
         $errors = [];
-        $firstName = $this->inputSanitizer->getInputString('first_name', InputSanitizer::METHOD_POST);
-        $lastName = $this->inputSanitizer->getInputString('last_name', InputSanitizer::METHOD_POST);
+        $firstName = ucfirst($this->inputSanitizer->getInputString('first_name', InputSanitizer::METHOD_POST));
+        $lastName = ucfirst($this->inputSanitizer->getInputString('last_name', InputSanitizer::METHOD_POST));
         if (!$firstName) {
             $errors[] = 'First name is required';
         }
